@@ -2,10 +2,11 @@
 
 ## Techstack used:
  - NextJS: React, Hooks
- - [Mantine components library](https://mantine.dev/core/button/)
+ - Material UI
 
 ## Screenshots
   ![home.png](/frontend/public/screenshots/home.png)
+  ![account-details.png](/frontend/public/screenshots/account-details.png)
 
 <br /><hr /><br />
 
