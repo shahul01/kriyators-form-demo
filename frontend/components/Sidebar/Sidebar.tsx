@@ -6,12 +6,18 @@ interface ISidebarProps {
 }
 
 const Sidebar: FC<ISidebarProps> = (props) => {
+  const [ isShowSidebar, setIsShowSidebar ] = useState(false);
 
   return (
-    <div className={styles['sidebar-container']}>
+    <div
+      className={styles['sidebar-container']}
+      style={{'width': ` ${isShowSidebar ? '30%' : '10%'}`}}
+      >
       <div className={styles['banner-btn-container']}>
         <p>KYRO</p>
-        <button>☰</button>
+        <button onClick={() => setIsShowSidebar(!isShowSidebar)}>
+          ☰
+        </button>
       </div>
       <div className={styles['links-container']}>
         <div className={styles['top']}>
