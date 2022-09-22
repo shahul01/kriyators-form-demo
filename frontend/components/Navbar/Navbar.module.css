@@ -1,0 +1,9 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.btn-dropdown-container {
+  display: flex;
+}

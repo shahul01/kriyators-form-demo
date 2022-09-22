@@ -5,7 +5,7 @@
  - [Mantine components library](https://mantine.dev/core/button/)
 
 ## Screenshots
-  ![home.png](/assets/screenshots/home.png)
+  ![home.png](/frontend/public/screenshots/home.png)
 
 <br /><hr /><br />
 
