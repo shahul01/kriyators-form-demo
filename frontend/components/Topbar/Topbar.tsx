@@ -1,13 +1,13 @@
 import { FC, useEffect, useState } from 'react';
-import styles from './Navbar.module.css';
+import styles from './Topbar.module.css';
 
-interface INavbarProps {
+interface ITopbarProps {
 }
 
-const Navbar: FC<INavbarProps> = (props) => {
+const Topbar: FC<ITopbarProps> = (props) => {
 
   return (
-    <div className={styles['navbar-container']}>
+    <div className={styles['topbar-container']}>
       <div className={styles['greet-today']}>
         <p>Good morning, Adam</p>
         <p>April 28, 2022</p>
@@ -23,4 +23,4 @@ const Navbar: FC<INavbarProps> = (props) => {
   )
 };
 
-export default Navbar;
+export default Topbar;

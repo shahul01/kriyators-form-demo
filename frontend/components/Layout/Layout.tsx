@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
-import Navbar from '../Navbar/Navbar';
+import Topbar from '../Topbar/Topbar';
 import styles from './Layout.module.css';
 
 interface ILayoutProps {
@@ -13,7 +13,7 @@ const Layout: FC<ILayoutProps> = (props) => {
     <div className={styles['layout-container']}>
       <Sidebar />
       <div className={styles['main']}>
-        <Navbar />
+        <Topbar />
         <div className={styles['content']}>
           {props.children}
         </div>
