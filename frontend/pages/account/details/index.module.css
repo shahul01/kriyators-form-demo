@@ -1,0 +1,6 @@
+.inputs-container {
+  display: flex;
+  width: 70%;
+  flex-wrap: wrap;
+  gap: 2.25rem 2.25rem;
+}
