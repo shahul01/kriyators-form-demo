@@ -111,7 +111,13 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
           </div>
         </div>
         <div className={styles['result']}>
+          <div className={styles['image-holder']}>
 
+          </div>
+          <div className={styles['text-details']}>
+            <p>{formAccDetails.displayName}</p>
+            <p>{formAccDetails.email}</p>
+          </div>
         </div>
       </div>
     </div>
