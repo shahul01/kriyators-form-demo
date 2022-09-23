@@ -11,7 +11,7 @@ const Sidebar: FC<ISidebarProps> = (props) => {
   return (
     <div
       className={styles['sidebar-container']}
-      style={{'width': ` ${isShowSidebar ? '30%' : '10%'}`}}
+      style={{'width': ` ${isShowSidebar ? '20%' : '10%'}`}}
       >
       <div className={styles['banner-btn-container']}>
         <p>KYRO</p>
