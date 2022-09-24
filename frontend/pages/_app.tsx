@@ -1,7 +1,9 @@
 import type { AppProps } from 'next/app';
-import Layout from '../components/Layout/Layout';
+import { Provider } from 'react-redux';
 import { ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material';
+import Layout from '../components/Layout/Layout';
+import { store } from '../store/store'
 import '../styles/globals.css';
 
 const theme = createTheme({
@@ -17,12 +19,14 @@ const theme = createTheme({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
 
-    </ThemeProvider>
+      </ThemeProvider>
+    </Provider>
   );
 };
 
