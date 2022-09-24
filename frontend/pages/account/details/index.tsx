@@ -47,18 +47,24 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
             <TextField
               id='firstName'
               label='First Name'
+              InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+              color='secondary'
               value={formAccDetails.firstName}
               onChange={handleChange}
             />
             <TextField
               id='lastName'
               label='Last Name'
+              InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+              color='secondary'
               value={formAccDetails.lastName}
               onChange={handleChange}
             />
             <TextField
               id='displayName'
               label='Display Name'
+              InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+              color='secondary'
               required={true}
               value={formAccDetails.displayName}
               onChange={handleChange}
@@ -66,6 +72,8 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
             <TextField
               id='email'
               label='Email'
+              InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+              color='secondary'
               required={true}
               value={formAccDetails.email}
               onChange={handleChange}
@@ -73,6 +81,8 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
             <TextField
               id='phoneNo1'
               type='number'
+              InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+              color='secondary'
               label='Phone No (Work)'
               value={formAccDetails.phoneNo1}
               onChange={handleChange}
@@ -80,6 +90,8 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
             <TextField
               id='phoneNo2'
               type='number'
+              InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+              color='secondary'
               label='Phone No (Work)'
               value={formAccDetails.phoneNo2}
               onChange={handleChange}
@@ -87,6 +99,8 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
             <TextField
               id='location'
               label='Location'
+              InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+              color='secondary'
               value={formAccDetails.location}
               onChange={handleChange}
             />

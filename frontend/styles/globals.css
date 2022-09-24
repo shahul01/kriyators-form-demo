@@ -27,9 +27,13 @@ p {
  * MUI
  */
 
-  .MuiTextField-root {
-    width: 300px;
-  }
+.MuiTextField-root {
+  width: 300px;
+}
+
+.MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: hsl(0, 0%, 35%);
+}
 
 
 

@@ -8,6 +8,9 @@ const theme = createTheme({
   palette: {
     primary: {
       main: 'hsl(358, 58%, 50%)'
+    },
+    secondary: {
+      main: 'hsl(0, 0%, 91%)'
     }
   }
 });
