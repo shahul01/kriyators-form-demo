@@ -11,28 +11,6 @@
   height: inherit;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0 4rem;
-  height: 100%;
-  width: 43%;
-}
-
-.inputs-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 2rem 0rem;
-}
-
-.buttons-container {
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-}
-
 .result {
   text-align: center;
   height: 70%;
