@@ -1,7 +1,8 @@
-import { FC, useEffect, useState, ChangeEvent } from 'react';
+import { FC, useEffect, useRef, useState, ChangeEvent } from 'react';
 import { useGetAccDetailsQuery } from '../../../features/services/accDetails';
 import Form from '../../../features/AccountDetails/Form/Form';
 import styles from './index.module.css';
+import { IFormAccDetails } from '../../../types/global';
 
 interface IAccountDetailsProps {
 }
@@ -17,22 +18,44 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     phoneNo2: '',
     location: ''
   };
-  const { data: fetchedData, error, isLoading } = useGetAccDetailsQuery();
+  const { data: fetchedFormData, error, isLoading } = useGetAccDetailsQuery();
   const [ formAccDetails, setFormAccDetails ] = useState(initialFormState);
+  const [ changedFormData, setChangedFormData ] = useState({});
+  const [ formChanged, setFormChanged ] = useState(false);
 
   useEffect(() => {
-    console.log('fetchedData :>> ', fetchedData);
-    if (fetchedData?.length) {
-      setFormAccDetails(fetchedData?.[0]);
-    }
-  }, [fetchedData]);
+    if (fetchedFormData?.length) {
+      setFormAccDetails(fetchedFormData?.[0]);
+    };
+  }, [fetchedFormData]);
+
+  useEffect(() => {
+    getChangedFormData();
+  }, [formAccDetails]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    // console.log(e.target?.id, e.target?.value);
+    if (!formChanged) setFormChanged(true);
     setFormAccDetails({
       ...formAccDetails,
       [e.target?.id]: e.target?.value
     });
+  };
+
+  function getChangedFormData() {
+    if (!fetchedFormData || !formChanged) return;
+    for (let key in fetchedFormData?.[0]) {
+      const oldFormKey = fetchedFormData?.[0][key];
+      const newFormKey = formAccDetails[key];
+      if (oldFormKey !== newFormKey) {
+        setChangedFormData({
+          ...changedFormData,
+          [key]: formAccDetails[key]
+        })
+      };
+    };
+
+    console.log('changedFormData', changedFormData);
+
   };
 
   function handleSubmit() {
