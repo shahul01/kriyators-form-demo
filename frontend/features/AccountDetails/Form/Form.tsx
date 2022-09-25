@@ -53,7 +53,6 @@ const Form: FC<IFormProps> = (props) => {
         />
         <TextField
           id='phoneNo1'
-          type='number'
           InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
           color='secondary'
           label='Phone No (Work)'
@@ -62,7 +61,6 @@ const Form: FC<IFormProps> = (props) => {
         />
         <TextField
           id='phoneNo2'
-          type='number'
           InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
           color='secondary'
           label='Phone No (Work)'

@@ -1,4 +1,5 @@
 import { FC, useEffect, useState, ChangeEvent } from 'react';
+import { useGetAccDetailsQuery } from '../../../features/services/accDetails';
 import Form from '../../../features/AccountDetails/Form/Form';
 import styles from './index.module.css';
 
@@ -12,11 +13,19 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     lastName: '',
     displayName: '',
     email: '',
-    phoneNo1: 0,
-    phoneNo2: 0,
+    phoneNo1: '',
+    phoneNo2: '',
     location: ''
   };
+  const { data: fetchedData, error, isLoading } = useGetAccDetailsQuery();
   const [ formAccDetails, setFormAccDetails ] = useState(initialFormState);
+
+  useEffect(() => {
+    console.log('fetchedData :>> ', fetchedData);
+    if (fetchedData?.length) {
+      setFormAccDetails(fetchedData?.[0]);
+    }
+  }, [fetchedData]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     // console.log(e.target?.id, e.target?.value);
