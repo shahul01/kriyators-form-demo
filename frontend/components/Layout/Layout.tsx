@@ -14,11 +14,11 @@ const Layout: FC<ILayoutProps> = (props) => {
   return (
     <div className={styles['layout-container']}>
       <Sidebar
-        fetchedUserData={fetchedUserData}
+        fetchedUserData={fetchedUserData || []}
       />
       <div className={styles['main']}>
         <Topbar
-          fetchedUserData={fetchedUserData}
+          fetchedUserData={fetchedUserData || []}
         />
         <div className={styles['content']}>
           {props.children}

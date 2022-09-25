@@ -10,3 +10,7 @@ export interface IFormAccDetails {
   location: string;
 }
 
+export interface IAccDetails extends IFormAccDetails {
+  jobTitle: string;
+  userName: string;
+}
