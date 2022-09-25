@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
+import { IFormAccDetails } from '../../types/global';
 import styles from './Sidebar.module.css'
 
 interface ISidebarProps {
+  fetchedUserData: IFormAccDetails[];
 }
 
 const Sidebar: FC<ISidebarProps> = (props) => {
@@ -28,6 +30,15 @@ const Sidebar: FC<ISidebarProps> = (props) => {
         <div className={styles['bottom']}>
           {/* <Link href={styles['/']}>
           </Link> */}
+          {props.fetchedUserData?.[0] ? (
+            <div>
+              Logout
+            </div>
+          ) : (
+            <div>
+              Login
+            </div>
+          )}
 
         </div>
       </div>
