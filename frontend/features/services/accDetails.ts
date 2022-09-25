@@ -8,9 +8,16 @@ export const accDetailsApi = createApi({
   endpoints: (builder) => ({
     getAccDetails: builder.query<IFormAccDetails[], void>({
       query: ()  => '/'
+    }),
+    updateAccDetails: builder.mutation<IFormAccDetails, {[key:string]:string}>({
+      query: (changedFormData) => ({
+        url: '/1/',
+        method: 'PATCH',
+        body: changedFormData
+      })
     })
   })
 
 });
 
-export const { useGetAccDetailsQuery } = accDetailsApi;
+export const { useGetAccDetailsQuery, useUpdateAccDetailsMutation } = accDetailsApi;

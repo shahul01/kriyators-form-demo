@@ -1,8 +1,7 @@
 import { FC, useEffect, useRef, useState, ChangeEvent } from 'react';
-import { useGetAccDetailsQuery } from '../../../features/services/accDetails';
+import { useGetAccDetailsQuery, useUpdateAccDetailsMutation } from '../../../features/services/accDetails';
 import Form from '../../../features/AccountDetails/Form/Form';
 import styles from './index.module.css';
-import { IFormAccDetails } from '../../../types/global';
 
 interface IAccountDetailsProps {
 }
@@ -19,6 +18,7 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     location: ''
   };
   const { data: fetchedFormData, error, isLoading } = useGetAccDetailsQuery();
+  const [ updateAccDetails ] = useUpdateAccDetailsMutation()
   const [ formAccDetails, setFormAccDetails ] = useState(initialFormState);
   const [ changedFormData, setChangedFormData ] = useState({});
   const [ formChanged, setFormChanged ] = useState(false);
@@ -54,12 +54,11 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
       };
     };
 
-    console.log('changedFormData', changedFormData);
-
   };
 
   function handleSubmit() {
-    console.log('formAccDetails :>> ', formAccDetails);
+    // console.log('changedFormData', changedFormData);
+    return updateAccDetails(changedFormData);
 
   };
 
