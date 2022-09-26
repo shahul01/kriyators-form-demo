@@ -1,4 +1,5 @@
 import { FC, useEffect, useRef, useState, ChangeEvent } from 'react';
+import toast from 'react-simple-toasts';
 import { useGetAccDetailsQuery, useUpdateAccDetailsMutation } from '../../../features/services/accDetails';
 import Form from '../../../features/AccountDetails/Form/Form';
 import styles from './index.module.css';
@@ -17,8 +18,8 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     phoneNo2: '',
     location: ''
   };
-  const { data: fetchedFormData, error, isLoading } = useGetAccDetailsQuery();
-  const [ updateAccDetails ] = useUpdateAccDetailsMutation()
+  const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading } = useGetAccDetailsQuery();
+  const [ updateAccDetails, { error:ErrorUpdateAccDetails } ] = useUpdateAccDetailsMutation()
   const [ formAccDetails, setFormAccDetails ] = useState(initialFormState);
   const [ changedFormData, setChangedFormData ] = useState({});
   const [ formChanged, setFormChanged ] = useState(false);
@@ -28,6 +29,13 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
       setFormAccDetails(fetchedFormData?.[0]);
     };
   }, [fetchedFormData]);
+
+  useEffect(() => {
+    if (ErrorGetAccDetails?.error) {
+      console.error('error', ErrorGetAccDetails);
+      toast(`Error: Can't get data. ${ErrorGetAccDetails?.error}`);
+    };
+  }, [ErrorGetAccDetails]);
 
   useEffect(() => {
     getChangedFormData();
@@ -58,7 +66,11 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
   function handleSubmit() {
     // console.log('changedFormData', changedFormData);
-    return updateAccDetails(changedFormData);
+    updateAccDetails(changedFormData);
+    if (ErrorUpdateAccDetails?.error) {
+      console.error('ErrorUpdateAccDetails :>> ', ErrorUpdateAccDetails);
+      toast(`Error: Can't submit data. ${ErrorUpdateAccDetails.error}`);
+    };
 
   };
 
