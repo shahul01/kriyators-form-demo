@@ -2,16 +2,18 @@
 
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
+import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import { IFormAccDetails } from '../../../types/global';
 import styles from './Preview.module.css';
 
 interface IPreviewProps {
-  formAccDetails: IFormAccDetails
+  formAccDetails: IFormAccDetails;
+  handleUploadPicture: ()=>void;
 }
 
 const Preview: FC<IPreviewProps> = (props) => {
   const imagesArr = props.formAccDetails?.images;
-  const profileImage = imagesArr?.find((currImg:{}) => !currImg.isThumbnail)||'';
+  const profileImage = imagesArr?.find((currImg:{}) => !currImg.isThumbnail) || '';
 
   return (
     <div className={styles['preview']}>
@@ -23,15 +25,13 @@ const Preview: FC<IPreviewProps> = (props) => {
                 alt='Profile Image'
                 layout='fill'
                 objectFit='cover'
-                // height='200'
-                // width='200'
               />) : (
                 <div className={styles['empty-image']}></div>
               )
             }
           </div>
-          <div className={styles['button']}>
-
+          <div className={styles['button']} onClick={props.handleUploadPicture} >
+            <CameraAltRoundedIcon className='camera' />
           </div>
 
         </div>

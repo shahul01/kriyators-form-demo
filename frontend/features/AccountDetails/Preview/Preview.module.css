@@ -16,3 +16,19 @@
   width: 13.75rem;
   box-shadow: 0px 8px 13px 2px rgb(0 0 0 / 14%);
 }
+
+.image-button-container > .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -4.375rem;
+  right: -12rem;
+  border-radius: 0.575rem;
+  padding: 0.7rem;
+  height: 3.75rem;
+  width: 3.75rem;
+  background-color: hsl(0deg 0% 92%);
+  cursor: pointer;
+  user-select: none;
+}

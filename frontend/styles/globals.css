@@ -39,6 +39,12 @@ svg.MuiSvgIcon-root {
   color: hsl(0, 0%, 0%);
 }
 
+svg.MuiSvgIcon-root.camera {
+  height:  2rem;
+  width:  2rem;
+  color: hsl(222, 17%, 55%);
+}
+
 
 
 

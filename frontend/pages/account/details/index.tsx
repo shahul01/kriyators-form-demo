@@ -65,6 +65,10 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
   };
 
+  function handleUploadPicture() {
+    console.log('handleUploadPicture() triggered');
+  };
+
   function handleSubmit() {
     // console.log('changedFormData', changedFormData);
     updateAccDetails(changedFormData);
@@ -97,6 +101,7 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
         />
         <Preview
           formAccDetails={formAccDetails}
+          handleUploadPicture={handleUploadPicture}
         />
       </div>
     </div>
