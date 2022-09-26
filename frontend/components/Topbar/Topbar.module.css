@@ -41,14 +41,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.user-dropdown {
-  display: flex;
-}
-
-.user-dropdown .image-container {
-  position: relative;
-  height: 4rem;
-  width: 4rem;
-
-}

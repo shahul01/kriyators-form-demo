@@ -1,0 +1,12 @@
+/* COMMT: Moved from frontend\components\Topbar\Topbar.tsx */
+
+.user-dropdown {
+  display: flex;
+}
+
+.user-dropdown .image-container {
+  position: relative;
+  height: 4rem;
+  width: 4rem;
+
+}
