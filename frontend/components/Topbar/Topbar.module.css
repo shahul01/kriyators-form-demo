@@ -1,7 +1,28 @@
 .topbar-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: var(--top-bar-height);
   width: 100%;
+}
+
+.greet-today {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 4rem;
+}
+
+.greet-today > .name {
+  font-size: 1.345rem;
+  font-weight: 500;
+}
+
+.greet-today > .date {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: hsl(219, 17%, 55%);
 }
 
 .btn-dropdown-container {

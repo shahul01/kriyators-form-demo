@@ -20,8 +20,8 @@ const Topbar: FC<ITopbarProps> = (props) => {
   return (
     <div className={styles['topbar-container']}>
       <div className={styles['greet-today']}>
-        <p>Good morning, {userData?.firstName || 'User'}</p>
-        <p>{today}</p>
+        <h2 className={styles['name']}>Good morning, {userData?.firstName || 'User'}</h2>
+        <p className={styles['date']}>{today}</p>
       </div>
       <div className={styles['btn-dropdown-container']}>
         <button onClick={() => handleAddProject(userData?.userName)}>+ ADD PROJECT</button>
