@@ -27,6 +27,25 @@ a:visited {
 }
 
 /*
+ * Sidebar
+ */
+
+.sidebar-link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  color: hsl(0, 0%, 65%);
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar-link:hover {
+  background-color: hsl(0, 0%, 90%);
+}
+
+/*
  * MUI
  */
 
@@ -42,7 +61,7 @@ svg.MuiSvgIcon-root {
   color: hsl(0, 0%, 0%);
 }
 
-svg.MuiSvgIcon-root.sidebar-icons {
+svg.MuiSvgIcon-root.sidebar-icon {
   color: hsl(0, 0%, 65%);
   height: 2rem;
   width: 2rem;

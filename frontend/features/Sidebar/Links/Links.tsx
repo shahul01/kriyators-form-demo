@@ -16,37 +16,37 @@ const Links: FC<ILinksProps> = (props) => {
 
   const links:any[] = [
     {
-      icon: <HomeRoundedIcon className='sidebar-icons' /> ,
+      icon: <HomeRoundedIcon className='sidebar-icon' /> ,
       name: 'Home',
       notificationCount: <NotificationCount link='home' />
     },
     {
-      icon: <EventNoteRoundedIcon className='sidebar-icons' /> ,
+      icon: <EventNoteRoundedIcon className='sidebar-icon' /> ,
       name: 'Projects',
       notificationCount: <NotificationCount link='projects' />
     },
     {
-      icon: <GridViewRoundedIcon className='sidebar-icons' /> ,
+      icon: <GridViewRoundedIcon className='sidebar-icon' /> ,
       name: 'Dashboard',
       notificationCount: <NotificationCount link='dashboard' />
     },
     {
-      icon: <ForumRoundedIcon className='sidebar-icons' /> ,
+      icon: <ForumRoundedIcon className='sidebar-icon' /> ,
       name: 'Messages',
       notificationCount: <NotificationCount link='messages' />
     },
     {
-      icon: <ArticleRoundedIcon className='sidebar-icons' /> ,
+      icon: <ArticleRoundedIcon className='sidebar-icon' /> ,
       name: 'Documents',
       notificationCount: <NotificationCount link='documents' />
     },
     {
-      icon: <ApartmentIcon className='sidebar-icons' /> ,
+      icon: <ApartmentIcon className='sidebar-icon' /> ,
       name: 'Organizations',
       notificationCount: <NotificationCount link='organizations' />
     },
     {
-      icon: <SettingsRoundedIcon className='sidebar-icons' /> ,
+      icon: <SettingsRoundedIcon className='sidebar-icon' /> ,
       name: 'Settings',
       notificationCount: <NotificationCount link='settings' />
     }
@@ -57,7 +57,7 @@ const Links: FC<ILinksProps> = (props) => {
     <div className={styles['links']}>
       {
         links.map((currLink, idx) => (
-          <div key={idx} className={styles['link']}>
+          <div key={idx} className='sidebar-link'>
             <div className={styles['icon']}>
               {currLink.icon}
               </div>

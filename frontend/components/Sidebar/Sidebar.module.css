@@ -34,3 +34,8 @@
 .links-container > div {
   width: 100%;
 }
+
+h2.name {
+  font-size: 1rem;
+  font-weight: 300;
+}

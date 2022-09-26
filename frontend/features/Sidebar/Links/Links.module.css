@@ -6,20 +6,6 @@
   gap: 1.6rem;
 }
 
-.link {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-  color: hsl(0, 0%, 65%);
-  cursor: pointer;
-  user-select: none;
-}
-
-.link:hover {
-  background-color: hsl(0, 0%, 90%);
-}
-
 h2.name {
   font-size: 1rem;
   font-weight: 300;

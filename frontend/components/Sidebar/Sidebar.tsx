@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import Links from '../../features/Sidebar/Links/Links';
+import NotificationCount from '../../features/Sidebar/NotificationCount/NotificationCount';
 import { IFormAccDetails } from '../../types/global';
 import styles from './Sidebar.module.css';
 
@@ -41,12 +44,31 @@ const Sidebar: FC<ISidebarProps> = (props) => {
           {/* <Link href={styles['/']}>
           </Link> */}
           {props.fetchedUserData?.[0] ? (
-            <div>
-              Logout
+            <div className='sidebar-link'>
+
+              <div className={styles['icon']}>
+                <LogoutRoundedIcon className='sidebar-icon' />
+              </div>
+              <h2 className={styles['name']}>
+                Logout
+              </h2>
+              <div className={styles['notification-count']}>
+                <NotificationCount link='logout' />
+              </div>
+
             </div>
           ) : (
-            <div>
-              Login
+            <div className='sidebar-link'>
+
+              <div className={styles['icon']}>
+                <LoginRoundedIcon className='sidebar-icon' />
+              </div>
+              <h2 className={styles['name']}>
+                Login
+              </h2>
+              <div className={styles['notification-count']}>
+                <NotificationCount link='login' />
+              </div>
             </div>
           )}
 
