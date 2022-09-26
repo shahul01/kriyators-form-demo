@@ -89,9 +89,9 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
   return (
     <div className={styles['account-details-container' ]}>
-      <div className={styles['header']}>
+      <h1 className={styles['header']}>
         My Profile
-      </div>
+      </h1>
       <div className={styles['body']}>
         <Form
           formAccDetails={formAccDetails}

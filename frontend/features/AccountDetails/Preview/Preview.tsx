@@ -36,8 +36,8 @@ const Preview: FC<IPreviewProps> = (props) => {
 
         </div>
         <div className={styles['text-details']}>
-          <p className={styles['displayName']}>{props.formAccDetails?.displayName}</p>
-          <p className={styles['email']}>{props.formAccDetails?.email}</p>
+          <h2 className={styles['displayName']}>{props.formAccDetails?.displayName}</h2>
+          <h3 className={styles['email']}>{props.formAccDetails?.email}</h3>
         </div>
       </div>
   )

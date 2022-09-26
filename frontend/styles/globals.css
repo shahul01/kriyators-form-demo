@@ -6,6 +6,15 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, p
+{
+  margin: 0;
+}
+
 a {
   color: #0000EE;
   text-decoration: none;
@@ -13,14 +22,6 @@ a {
 
 a:visited {
   color: #551A8B;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-p {
-  margin: 0;
 }
 
 /*
@@ -44,8 +45,6 @@ svg.MuiSvgIcon-root.camera {
   width:  2rem;
   color: hsl(222, 17%, 55%);
 }
-
-
 
 
 /*
