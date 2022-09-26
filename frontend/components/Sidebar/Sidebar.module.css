@@ -7,6 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: var(--top-bar-height);
 }
 
 .banner-container {
@@ -14,14 +15,22 @@
   position: relative;
   height: 26px;
   width: 118px;
-
-}
-
-h1.banner {
-
 }
 
 .banner-btn-container > .button {
   cursor: pointer;
   user-select: none;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  height: calc(100% - var(--top-bar-height));
+}
+
+.links-container > div {
+  width: 100%;
 }

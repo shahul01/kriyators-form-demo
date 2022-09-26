@@ -31,7 +31,7 @@ const Preview: FC<IPreviewProps> = (props) => {
             }
           </div>
           <div className={styles['button']} onClick={props.handleUploadPicture} >
-            <CameraAltRoundedIcon className='camera' />
+            <CameraAltRoundedIcon className='camera-img-upload' />
           </div>
 
         </div>

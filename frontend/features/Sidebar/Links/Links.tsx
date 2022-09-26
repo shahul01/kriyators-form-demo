@@ -63,7 +63,7 @@ const Links: FC<ILinksProps> = (props) => {
               </div>
             <h2 className={styles['name']}>
               {currLink.name}
-              </h2>
+            </h2>
             <div className={styles['notification-count']}>
               {currLink.notificationCount}
               </div>

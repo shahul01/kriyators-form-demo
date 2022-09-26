@@ -1,3 +1,5 @@
+@import './variables.css';
+
 html,
 body {
   padding: 0;
@@ -36,15 +38,17 @@ a:visited {
   border-color: hsl(0, 0%, 35%);
 }
 
-svg.MuiSvgIcon-root.sidebar-icons {
-  color: hsl(0, 0%, 65%);
-}
-
 svg.MuiSvgIcon-root {
   color: hsl(0, 0%, 0%);
 }
 
-svg.MuiSvgIcon-root.camera {
+svg.MuiSvgIcon-root.sidebar-icons {
+  color: hsl(0, 0%, 65%);
+  height: 2rem;
+  width: 2rem;
+}
+
+svg.MuiSvgIcon-root.camera-img-upload {
   height:  2rem;
   width:  2rem;
   color: hsl(222, 17%, 55%);
