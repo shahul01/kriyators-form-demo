@@ -27,4 +27,28 @@
 
 .btn-dropdown-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-dropdown-container button {
+  height: max-content;
+}
+
+.btn-dropdown-container .btn-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-dropdown {
+  display: flex;
+}
+
+.user-dropdown .image-container {
+  position: relative;
+  height: 4rem;
+  width: 4rem;
+
 }

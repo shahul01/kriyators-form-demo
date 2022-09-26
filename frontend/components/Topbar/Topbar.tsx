@@ -1,5 +1,8 @@
+import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
-import { IAccDetails } from '../../types/global';
+import { Button } from '@mui/material';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import { IImage, IAccDetails } from '../../types/global';
 import styles from './Topbar.module.css';
 
 interface ITopbarProps {
@@ -7,10 +10,15 @@ interface ITopbarProps {
 }
 
 const Topbar: FC<ITopbarProps> = (props) => {
+
   const today = new Intl.DateTimeFormat(
     'en-US', {dateStyle: 'long'}
   ).format(new Date());
+
   const userData = props?.fetchedUserData?.[0];
+
+  const imagesArr:IImage[] = userData?.images || [];
+  const profileImage:IImage|string = imagesArr?.find((currImg:IImage) => currImg?.isThumbnail) || '';
 
   function handleAddProject(userName:string) {
     console.log('userName', userName);
@@ -24,10 +32,33 @@ const Topbar: FC<ITopbarProps> = (props) => {
         <p className={styles['date']}>{today}</p>
       </div>
       <div className={styles['btn-dropdown-container']}>
-        <button onClick={() => handleAddProject(userData?.userName)}>+ ADD PROJECT</button>
+        <Button
+          variant='contained'
+          onClick={() => handleAddProject(userData?.userName)}
+          >
+            <div className={styles['btn-text']}>
+              <AddOutlinedIcon className='topbar-btn-icon' />
+              <span>ADD PROJECT</span>
+            </div>
+        </Button>
         <div className={styles['user-dropdown']}>
-          <p>{userData?.firstName || 'User'}</p>
-          <p>{userData?.jobTitle || 'Job title'}</p>
+          <div className={styles['image-container']}>
+            <Image
+              src={profileImage?.data}
+              alt='User portrait'
+              layout='fill'
+              objectFit='cover'
+
+            />
+          </div>
+          <div className={styles['user-details-text']}>
+            <h3 className={styles['firstName']}>
+              {userData?.firstName || 'User'}
+            </h3>
+            <p className={styles['jobTitle']}>
+              {userData?.jobTitle || 'Job title'}
+            </p>
+          </div>
         </div>
       </div>
     </div>

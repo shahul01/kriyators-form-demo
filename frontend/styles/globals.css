@@ -62,6 +62,10 @@ svg.MuiSvgIcon-root {
   color: hsl(0, 0%, 0%);
 }
 
+svg.MuiSvgIcon-root.topbar-btn-icon {
+  color: hsl(0, 0%, 100%);
+}
+
 svg.MuiSvgIcon-root.sidebar-icon {
   color: hsl(0, 0%, 65%);
   height: 2rem;
