@@ -1,0 +1,12 @@
+.link {
+  display: flex;
+  justify-conten: center;
+  align-items: center;
+  color: hsl(0, 0%, 65%);
+  cursor: pointer;
+  user-select: none;
+}
+
+.link:hover {
+  outline: 1px solid #ccc;
+}
