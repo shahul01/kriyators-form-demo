@@ -1,5 +1,12 @@
 
 // ### Account Details ###
+export interface IImage {
+  id: number;
+  isThumbnail: boolean;
+  mime: string;
+  data: string;
+}
+
 export interface IFormAccDetails {
   firstName: string;
   lastName: string;
@@ -8,6 +15,7 @@ export interface IFormAccDetails {
   phoneNo1: string;
   phoneNo2: string;
   location: string;
+  images?: IImage[];
 }
 
 export interface IAccDetails extends IFormAccDetails {

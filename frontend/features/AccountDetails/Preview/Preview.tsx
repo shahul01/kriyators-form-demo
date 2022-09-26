@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
-import { IFormAccDetails } from '../../../types/global';
+import { IImage, IFormAccDetails } from '../../../types/global';
 import styles from './Preview.module.css';
 
 interface IPreviewProps {
@@ -12,8 +12,8 @@ interface IPreviewProps {
 }
 
 const Preview: FC<IPreviewProps> = (props) => {
-  const imagesArr = props.formAccDetails?.images;
-  const profileImage = imagesArr?.find((currImg:{}) => !currImg.isThumbnail) || '';
+  const imagesArr:IImage[] = props.formAccDetails?.images || [];
+  const profileImage:IImage|string = imagesArr?.find((currImg:IImage) => !currImg?.isThumbnail) || '';
 
   return (
     <div className={styles['preview']}>

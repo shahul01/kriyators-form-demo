@@ -6,4 +6,22 @@
 .banner-btn-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.banner-container {
+  overflow: hidden;
+  position: relative;
+  height: 26px;
+  width: 118px;
+
+}
+
+h1.banner {
+
+}
+
+.banner-btn-container > .button {
+  cursor: pointer;
+  user-select: none;
 }

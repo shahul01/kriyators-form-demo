@@ -3,7 +3,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: Roboto, Oxygen, -apple-system, BlinkMacSystemFont, Segoe UI,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Lato, sans-serif;
 }
 
 * {
@@ -44,6 +44,11 @@ svg.MuiSvgIcon-root.camera {
   height:  2rem;
   width:  2rem;
   color: hsl(222, 17%, 55%);
+}
+
+svg.MuiSvgIcon-root.menu-button {
+  height:  32px;
+  width:  32px;
 }
 
 
