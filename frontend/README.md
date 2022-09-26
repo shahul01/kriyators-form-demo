@@ -1,8 +1,9 @@
 # kriyators-screening-demo-frontend
 
 ## Techstack used:
- - NextJS: React, Hooks
- - Material UI
+  - NextJS: React, Hooks
+  - Redux Toolkit, RTK Query
+  - Material UI
 
 ## Screenshots
   ![home.png](/frontend/public/screenshots/home.png)

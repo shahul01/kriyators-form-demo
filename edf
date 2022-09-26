@@ -1,7 +1,0 @@
-warning: LF will be replaced by CRLF in frontend/.gitignore.
-The file will have its original line endings in your working directory
-warning: LF will be replaced by CRLF in frontend/pages/_app.tsx.
-The file will have its original line endings in your working directory
-warning: LF will be replaced by CRLF in frontend/styles/globals.css.
-The file will have its original line endings in your working directory
- 4 files changed, 27 insertions(+), 3 deletions(-)

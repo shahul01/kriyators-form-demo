@@ -63,7 +63,11 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   };
 
   function handleReset() {
-    setFormAccDetails(initialFormState);
+    if (fetchedFormData?.length) {
+      setFormAccDetails(fetchedFormData?.[0]);
+    } else {
+      setFormAccDetails(initialFormState);
+    };
   };
 
   return (
