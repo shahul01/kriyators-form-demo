@@ -66,10 +66,16 @@ svg.MuiSvgIcon-root.topbar-btn-icon {
   color: hsl(0, 0%, 100%);
 }
 
-svg.MuiSvgIcon-root.sidebar-icon {
+svg.MuiSvgIcon-root.topbar-arrow-icon {
+  height: 2.275rem;
+  width: 2.275rem;
   color: hsl(0, 0%, 65%);
+}
+
+svg.MuiSvgIcon-root.sidebar-icon {
   height: 2rem;
   width: 2rem;
+  color: hsl(0, 0%, 65%);
 }
 
 svg.MuiSvgIcon-root.camera-img-upload {

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 import { IImage, IAccDetails } from '../../../types/global';
 import styles from './UserDropdown.module.css';
 
@@ -19,22 +20,35 @@ const UserDropdown: FC<IUserDropdownProps> = (props) => {
   return (
     <div className={styles['user-dropdown']}>
         <div className={styles['image-container']}>
-          <Image
-            src={profileImage?.data}
-            alt='User portrait'
-            layout='fill'
-            objectFit='cover'
+          {profileImage?.data ? (
+            <Image
+              src={profileImage?.data}
+              alt='User portrait'
+              layout='fill'
+              objectFit='cover'
 
-          />
+            />
+          ) : (
+            ''
+          )}
         </div>
 
-        <div className={styles['user-details-text']}>
-          <h3 className={styles['firstName']}>
-            {userData?.firstName || 'User'}
-          </h3>
-          <p className={styles['jobTitle']}>
-            {userData?.jobTitle || 'Job title'}
-          </p>
+
+        <div className={styles['text-arrow-container']}>
+
+          <div className={styles['user-details-text']}>
+            <h3 className={styles['firstName']}>
+              {userData?.firstName || 'User'}
+            </h3>
+            <p className={styles['jobTitle']}>
+              {userData?.jobTitle || 'Job title'}
+            </p>
+          </div>
+
+          <div className={styles['arrow-container']}>
+            <ArrowDropDownOutlinedIcon className='topbar-arrow-icon' />
+          </div>
+
         </div>
 
 

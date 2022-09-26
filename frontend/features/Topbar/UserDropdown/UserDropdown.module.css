@@ -2,11 +2,36 @@
 
 .user-dropdown {
   display: flex;
+  user-select: none;
+  cursor: pointer;
 }
 
-.user-dropdown .image-container {
+.image-container {
+  overflow: hidden;
   position: relative;
-  height: 4rem;
-  width: 4rem;
+  border-radius: 8px;
+  height: 3.125rem;
+  width: 3.125rem;
+}
+
+.text-arrow-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-details-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.user-details-text > h3.firstName {
+  font-size: 0.9rem;
+}
+
+.user-details-text > p.jobTitle {
+  font-size: 0.8rem;
+  color: hsl(219, 17%, 55%);
 
 }
