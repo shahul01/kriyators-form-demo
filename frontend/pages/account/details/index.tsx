@@ -3,6 +3,7 @@ import toast from 'react-simple-toasts';
 import { useGetAccDetailsQuery, useUpdateAccDetailsMutation } from '../../../features/services/accDetails';
 import Form from '../../../features/AccountDetails/Form/Form';
 import styles from './index.module.css';
+import Preview from '../../../features/AccountDetails/Preview/Preview';
 
 interface IAccountDetailsProps {
 }
@@ -94,15 +95,9 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
           handleSubmit={handleSubmit}
           handleReset={handleReset}
         />
-        <div className={styles['result']}>
-          <div className={styles['image-holder']}>
-
-          </div>
-          <div className={styles['text-details']}>
-            <p>{formAccDetails.displayName}</p>
-            <p>{formAccDetails.email}</p>
-          </div>
-        </div>
+        <Preview
+          formAccDetails={formAccDetails}
+        />
       </div>
     </div>
   )
