@@ -1,8 +1,14 @@
 // COMMT: Moved from frontend\pages\account\details\index.tsx
 
 import { FC, useEffect, useState, ChangeEvent } from 'react';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import PersonIcon from '@mui/icons-material/Person';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import Button from '@mui/material/Button';
 import styles from './Form.module.css';
 
 interface IFormProps {
@@ -21,6 +27,13 @@ const Form: FC<IFormProps> = (props) => {
           id='firstName'
           label='First Name'
           InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+          InputProps={{
+            startAdornment:  (
+              <InputAdornment position='start'>
+                <PersonIcon />
+              </InputAdornment>
+            )
+          }}
           color='secondary'
           value={props.formAccDetails?.firstName}
           onChange={props.handleChange}
@@ -29,6 +42,13 @@ const Form: FC<IFormProps> = (props) => {
           id='lastName'
           label='Last Name'
           InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+          InputProps={{
+            startAdornment:  (
+              <InputAdornment position='start'>
+                <PersonIcon />
+              </InputAdornment>
+            )
+          }}
           color='secondary'
           value={props.formAccDetails?.lastName}
           onChange={props.handleChange}
@@ -37,6 +57,13 @@ const Form: FC<IFormProps> = (props) => {
           id='displayName'
           label='Display Name'
           InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+          InputProps={{
+            startAdornment:  (
+              <InputAdornment position='start'>
+                <AccountBoxOutlinedIcon />
+              </InputAdornment>
+            )
+          }}
           color='secondary'
           required={true}
           value={props.formAccDetails?.displayName}
@@ -46,6 +73,13 @@ const Form: FC<IFormProps> = (props) => {
           id='email'
           label='Email'
           InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+          InputProps={{
+            startAdornment:  (
+              <InputAdornment position='start'>
+                <EmailOutlinedIcon />
+              </InputAdornment>
+            )
+          }}
           color='secondary'
           required={true}
           value={props.formAccDetails?.email}
@@ -54,6 +88,13 @@ const Form: FC<IFormProps> = (props) => {
         <TextField
           id='phoneNo1'
           InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+          InputProps={{
+            startAdornment:  (
+              <InputAdornment position='start'>
+                <EmailOutlinedIcon />
+              </InputAdornment>
+            )
+          }}
           color='secondary'
           label='Phone No (Work)'
           value={props.formAccDetails?.phoneNo1}
@@ -62,6 +103,13 @@ const Form: FC<IFormProps> = (props) => {
         <TextField
           id='phoneNo2'
           InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+          InputProps={{
+            startAdornment:  (
+              <InputAdornment position='start'>
+                <LocalPhoneOutlinedIcon />
+              </InputAdornment>
+            )
+          }}
           color='secondary'
           label='Phone No (Work)'
           value={props.formAccDetails?.phoneNo2}
@@ -71,6 +119,13 @@ const Form: FC<IFormProps> = (props) => {
           id='location'
           label='Location'
           InputLabelProps={{ style: {color: 'hsl(0, 0%, 22%)'} }}
+          InputProps={{
+            startAdornment:  (
+              <InputAdornment position='start'>
+                <LocationOnOutlinedIcon />
+              </InputAdornment>
+            )
+          }}
           color='secondary'
           value={props.formAccDetails?.location}
           onChange={props.handleChange}
