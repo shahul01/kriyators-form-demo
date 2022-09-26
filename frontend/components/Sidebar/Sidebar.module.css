@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: var(--top-bar-height);
+  height: var(--topbar-height);
 }
 
 .banner-container {
@@ -27,7 +27,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
-  height: calc(100% - var(--top-bar-height));
+  height: calc(100% - var(--topbar-height));
 }
 
 .links-container > div {

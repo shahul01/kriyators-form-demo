@@ -13,12 +13,18 @@ interface IUserDropdownProps {
 const UserDropdown: FC<IUserDropdownProps> = (props) => {
 
   const userData = props?.fetchedUserData?.[0];
-
   const imagesArr:IImage[] = userData?.images || [];
   const profileImage:IImage|string = imagesArr?.find((currImg:IImage) => currImg?.isThumbnail) || '';
 
+  function handleUserDropdownClicked() {
+    console.log('handleUserDropdownClicked() triggered');
+  };
+
   return (
-    <div className={styles['user-dropdown']}>
+    <div
+      className={styles['user-dropdown']}
+      onClick={handleUserDropdownClicked}
+      >
         <div className={styles['image-container']}>
           {profileImage?.data ? (
             <Image

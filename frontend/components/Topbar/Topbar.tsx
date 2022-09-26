@@ -11,11 +11,11 @@ interface ITopbarProps {
 
 const Topbar: FC<ITopbarProps> = (props) => {
 
+
+  const userData = props?.fetchedUserData?.[0];
   const today = new Intl.DateTimeFormat(
     'en-US', {dateStyle: 'long'}
   ).format(new Date());
-
-  const userData = props?.fetchedUserData?.[0];
 
   function handleAddProject(userName:string) {
     console.log('userName', userName);

@@ -11,5 +11,6 @@
 
 .content {
   margin: 1rem 1rem;
-  height: calc(100% - 15rem);
+  height: calc(100% - 18rem);
+  /* height: calc(100% - var(--topbar-height)); */
 }
