@@ -3,23 +3,29 @@
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
-import { IImage, IFormAccDetails } from '../../../types/global';
+import { IImage, IAccDetails } from '../../../types/global';
 import styles from './Preview.module.css';
 
 interface IPreviewProps {
-  formAccDetails: IFormAccDetails;
+  formAccDetails: IAccDetails;
   handleUploadPicture: ()=>void;
 }
 
 const Preview: FC<IPreviewProps> = (props) => {
+  const initialProfileImageData:IImage = {
+    "id": 0,
+    "isThumbnail": false,
+    "mime": "image / jpeg",
+    "data": ""
+  };
   const imagesArr:IImage[] = props.formAccDetails?.images || [];
-  const profileImage:IImage|string = imagesArr?.find((currImg:IImage) => !currImg?.isThumbnail) || '';
+  const profileImage:IImage = imagesArr?.find((currImg:IImage) => !currImg?.isThumbnail) || initialProfileImageData;
 
   return (
     <div className={styles['preview']}>
         <div className={styles['image-button-container']}>
           <div className={styles['image-container']}>
-            {profileImage ? (
+            {(profileImage) ? (
               <Image
                 src={profileImage?.data}
                 alt='Profile Image'

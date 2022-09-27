@@ -9,10 +9,11 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import Button from '@mui/material/Button';
+import { IAccDetails } from '../../../types/global';
 import styles from './Form.module.css';
 
 interface IFormProps {
-  formAccDetails: { [key:string]:string|number }
+  formAccDetails: IAccDetails
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: () => void;
   handleReset: () => void;

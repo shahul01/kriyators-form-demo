@@ -12,9 +12,15 @@ interface IUserDropdownProps {
 
 const UserDropdown: FC<IUserDropdownProps> = (props) => {
 
+  const initialProfileImageData = {
+    "id": 0,
+    "isThumbnail": false,
+    "mime": "image / jpeg",
+    "data": ""
+  };
   const userData = props?.fetchedUserData?.[0];
   const imagesArr:IImage[] = userData?.images || [];
-  const profileImage:IImage|string = imagesArr?.find((currImg:IImage) => currImg?.isThumbnail) || '';
+  const profileImage:IImage|string = imagesArr?.find((currImg:IImage) => currImg?.isThumbnail) || initialProfileImageData;
 
   function handleUserDropdownClicked() {
     console.log('handleUserDropdownClicked() triggered');

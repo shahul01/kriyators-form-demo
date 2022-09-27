@@ -2,6 +2,7 @@ import { FC, useEffect, useRef, useState, ChangeEvent } from 'react';
 import toast from 'react-simple-toasts';
 import { useGetAccDetailsQuery, useUpdateAccDetailsMutation } from '../../../features/services/accDetails';
 import Form from '../../../features/AccountDetails/Form/Form';
+import { IAccDetails, IFormAccDetails } from '../../../types/global';
 import styles from './index.module.css';
 import Preview from '../../../features/AccountDetails/Preview/Preview';
 
@@ -10,18 +11,21 @@ interface IAccountDetailsProps {
 
 const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
-  const initialFormState = {
+  const initialFormState:IAccDetails = {
     firstName: '',
     lastName: '',
     displayName: '',
     email: '',
     phoneNo1: '',
     phoneNo2: '',
-    location: ''
+    location: '',
+    images: [],
+    jobTitle: '',
+    userName: ''
   };
   const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading } = useGetAccDetailsQuery();
   const [ updateAccDetails, { error:ErrorUpdateAccDetails } ] = useUpdateAccDetailsMutation()
-  const [ formAccDetails, setFormAccDetails ] = useState(initialFormState);
+  const [ formAccDetails, setFormAccDetails ] = useState<IAccDetails|{[key:string]:any}|any>(initialFormState);
   const [ changedFormData, setChangedFormData ] = useState({});
   const [ formChanged, setFormChanged ] = useState(false);
 
@@ -32,14 +36,16 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   }, [fetchedFormData]);
 
   useEffect(() => {
-    if (ErrorGetAccDetails?.error) {
+    if ((typeof(ErrorGetAccDetails) !== 'undefined') && 'error' in ErrorGetAccDetails) {
       console.error('error', ErrorGetAccDetails);
       toast(`Error: Can't get data. ${ErrorGetAccDetails?.error}`);
     };
   }, [ErrorGetAccDetails]);
 
   useEffect(() => {
+    console.log('runs');
     getChangedFormData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formAccDetails]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -52,9 +58,10 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
   function getChangedFormData() {
     if (!fetchedFormData || !formChanged) return;
-    for (let key in fetchedFormData?.[0]) {
-      const oldFormKey = fetchedFormData?.[0][key];
-      const newFormKey = formAccDetails[key];
+    const fetchedForm:{[key:string]:any} = fetchedFormData?.[0];
+    for (let key in fetchedForm) {
+      const oldFormKey:string = fetchedForm[key];
+      const newFormKey:string = formAccDetails[key];
       if (oldFormKey !== newFormKey) {
         setChangedFormData({
           ...changedFormData,
@@ -72,7 +79,7 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   function handleSubmit() {
     // console.log('changedFormData', changedFormData);
     updateAccDetails(changedFormData);
-    if (ErrorUpdateAccDetails?.error) {
+    if ((typeof(ErrorUpdateAccDetails) !== 'undefined') && 'error' in ErrorUpdateAccDetails) {
       console.error('ErrorUpdateAccDetails :>> ', ErrorUpdateAccDetails);
       toast(`Error: Can't submit data. ${ErrorUpdateAccDetails.error}`);
     };
