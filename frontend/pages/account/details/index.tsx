@@ -83,6 +83,7 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
       console.error('ErrorUpdateAccDetails :>> ', ErrorUpdateAccDetails);
       toast(`Error: Can't submit data. ${ErrorUpdateAccDetails.error}`);
     };
+    toast('Details updated.');
 
   };
 
