@@ -1,4 +1,6 @@
 # kriyators-screening-demo-backend
+## I have NOT used Strapi as backend
+## I have used [json-server](https://www.npmjs.com/package/json-server)
 
 <br /><hr /><br />
 

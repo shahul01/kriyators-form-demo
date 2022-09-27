@@ -1,9 +1,13 @@
 # kriyators-screening-demo-frontend
 
-## Techstack used:
-  - NextJS: React, Hooks
-  - Redux Toolkit, RTK Query
-  - Material UI
+## Techstacks used:
+  - NextJS: React, Hooks.
+  - Redux Toolkit, RTK Query.
+  - Material UI.
+  - CSS.
+  - TypeScript.
+  - I have used [json-server](https://www.npmjs.com/package/json-server) as backend.
+  - Deployed with Vercel and Heroku.
 
 ## Screenshots
   ![home.png](/frontend/public/screenshots/home.png)
