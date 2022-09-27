@@ -1,4 +1,5 @@
 :root {
+  --primary-color: hsl(358, 58%, 50%);
   --topbar-height: 7.5rem;
   --footer-height: 4rem;
 }

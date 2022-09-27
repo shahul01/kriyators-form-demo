@@ -1,6 +1,7 @@
 .sidebar-container {
   height: 100%;
   min-width: 10%;
+  overflow: hidden;
 }
 
 .banner-btn-container {

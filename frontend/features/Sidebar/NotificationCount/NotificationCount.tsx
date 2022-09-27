@@ -10,7 +10,7 @@ const NotificationCount: FC<INotificationCountProps> = (props) => {
   const messageCount = ('0' + mockedDataMessageCount).slice(-2);
 
   return (
-    <div className={styles['NotificationCount']}>
+    <div className={styles['notification-count-container']}>
       {
         props.link === 'messages' ?
           (
