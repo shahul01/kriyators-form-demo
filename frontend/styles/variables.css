@@ -1,5 +1,9 @@
 :root {
+  --layout-padding-x: 2rem;
+  --layout-padding-y: 2rem;
   --primary-color: hsl(358, 58%, 50%);
-  --topbar-height: 7.5rem;
+  --topbar-height: 4rem;
   --footer-height: 4rem;
+  /* calc(--layout-padding-y * 9); */
+  --multiplied-height: 18rem;
 }

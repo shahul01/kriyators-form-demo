@@ -1,12 +1,15 @@
 /* COMMT: Moved from frontend\pages\account\details\index.module.css */
 
 .form {
+  overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1rem;
   margin: 0 4rem;
+  padding: 10px 0;
   height: 100%;
-  width: 43%;
+  width: clamp(53%, 15vw, 43%);
 }
 
 .inputs-container {
