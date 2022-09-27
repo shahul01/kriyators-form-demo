@@ -25,7 +25,7 @@ const Preview: FC<IPreviewProps> = (props) => {
     <div className={styles['preview']}>
         <div className={styles['image-button-container']}>
           <div className={styles['image-container']}>
-            {(profileImage) ? (
+            {(profileImage?.data) ? (
               <Image
                 src={profileImage?.data}
                 alt='Profile Image'
