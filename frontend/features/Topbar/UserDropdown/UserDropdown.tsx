@@ -50,7 +50,7 @@ const UserDropdown: FC<IUserDropdownProps> = (props) => {
 
           <div className={styles['user-details-text']}>
             <h3 className={styles['firstName']}>
-              {userData?.firstName || 'User'}
+              {userData?.displayName?.split(' ')[0] || 'User'}
             </h3>
             <p className={styles['jobTitle']}>
               {userData?.jobTitle || 'Job title'}

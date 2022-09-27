@@ -23,11 +23,13 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     jobTitle: '',
     userName: ''
   };
+  const validEmailRegex = /(.+)@(.+){2,}\.(.+){2,}/;
   const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading } = useGetAccDetailsQuery();
   const [ updateAccDetails, { error:ErrorUpdateAccDetails } ] = useUpdateAccDetailsMutation()
   const [ formAccDetails, setFormAccDetails ] = useState<IAccDetails|{[key:string]:any}|any>(initialFormState);
   const [ changedFormData, setChangedFormData ] = useState({});
   const [ formChanged, setFormChanged ] = useState(false);
+  const isValidEmail = validEmailRegex.test(formAccDetails?.email);
 
   useEffect(() => {
     if (fetchedFormData?.length) {
@@ -77,6 +79,9 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   };
 
   function handleSubmit() {
+    if (!isValidEmail) {
+      return toast('Error: Please Enter a valid Email. Not submitted.');
+    };
     // console.log('changedFormData', changedFormData);
     updateAccDetails(changedFormData);
     if ((typeof(ErrorUpdateAccDetails) !== 'undefined') && 'error' in ErrorUpdateAccDetails) {
@@ -102,6 +107,7 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
       </h1>
       <div className={styles['body']}>
         <Form
+          isValidEmail={isValidEmail}
           formAccDetails={formAccDetails}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
