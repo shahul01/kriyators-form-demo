@@ -51,7 +51,7 @@ a:visited {
  */
 
 .MuiTextField-root {
-  width: 300px;
+  width: clamp(230px, 15vw, 300px);
 }
 
 .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline {
