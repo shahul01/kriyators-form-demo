@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import Topbar from '../Topbar/Topbar';
 import { useGetAccDetailsQuery } from '../../features/services/accDetails';
@@ -10,6 +10,10 @@ interface ILayoutProps {
 
 const Layout: FC<ILayoutProps> = (props) => {
   const { data:fetchedUserData, error, isLoading } = useGetAccDetailsQuery();
+
+  useEffect(() => {
+    // console.log('fetchedUserData', fetchedUserData);
+  }, [fetchedUserData]);
 
   return (
     <div className={styles['layout-container']}>

@@ -24,14 +24,16 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     userName: ''
   };
   const validEmailRegex = /(.+)@(.+){2,}\.(.+){2,}/;
-  const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading } = useGetAccDetailsQuery();
+  const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading, refetch: refetchFormData } = useGetAccDetailsQuery();
+  const changedFormData = useRef({});
   const [ updateAccDetails, { error:ErrorUpdateAccDetails } ] = useUpdateAccDetailsMutation()
   const [ formAccDetails, setFormAccDetails ] = useState<IAccDetails|{[key:string]:any}|any>(initialFormState);
-  const [ changedFormData, setChangedFormData ] = useState({});
+  // const [ changedFormData, setChangedFormData ] = useState({});
   const [ formChanged, setFormChanged ] = useState(false);
   const isValidEmail = validEmailRegex.test(formAccDetails?.email);
 
   useEffect(() => {
+    console.log('fetchedFormData', fetchedFormData);
     if (fetchedFormData?.length) {
       setFormAccDetails(fetchedFormData?.[0]);
     };
@@ -45,7 +47,6 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   }, [ErrorGetAccDetails]);
 
   useEffect(() => {
-    console.log('runs');
     getChangedFormData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formAccDetails]);
@@ -65,10 +66,10 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
       const oldFormKey:string = fetchedForm[key];
       const newFormKey:string = formAccDetails[key];
       if (oldFormKey !== newFormKey) {
-        setChangedFormData({
-          ...changedFormData,
+        changedFormData.current = {
+          ...changedFormData.current,
           [key]: formAccDetails[key]
-        })
+        };
       };
     };
 
@@ -82,13 +83,17 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     if (!isValidEmail) {
       return toast('Error: Please Enter a valid Email. Not submitted.');
     };
-    // console.log('changedFormData', changedFormData);
-    updateAccDetails(changedFormData);
+
+    console.log('changedFormData', changedFormData.current);
+    updateAccDetails(changedFormData.current);
+
     if ((typeof(ErrorUpdateAccDetails) !== 'undefined') && 'error' in ErrorUpdateAccDetails) {
       console.error('ErrorUpdateAccDetails :>> ', ErrorUpdateAccDetails);
       toast(`Error: Can't submit data. ${ErrorUpdateAccDetails.error}`);
     };
+
     toast('Details updated.');
+    // refetchFormData();
 
   };
 

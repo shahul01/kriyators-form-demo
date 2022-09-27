@@ -26,7 +26,7 @@ const Topbar: FC<ITopbarProps> = (props) => {
     <div className={styles['topbar-container']}>
 
       <div className={styles['greet-today']}>
-        <h2 className={styles['name']}>Good morning, {userData?.firstName || 'User'}</h2>
+        <h2 className={styles['name']}>Good morning, {userData?.displayName?.split(' ')?.[0] || 'User'}</h2>
         <p className={styles['date']}>{today}</p>
       </div>
 
