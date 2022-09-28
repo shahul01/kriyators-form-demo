@@ -44,14 +44,15 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   }, [fetchedFormData]);
 
   useEffect(() => {
-    // COMMT: show toast if data not loaded yet but for 7 secs max.
+    // COMMT: show toast if data not loaded yet but for 4 secs max.
     if (
-        isLoadingFormData
-        && firstRender.current.isLoadingFormData
+        // isLoadingFormData
+        // &&
+        firstRender.current.isLoadingFormData
       ) {
       toast(
         'Loading...', {
-          time: (7*1000),
+          time: (4*1000),
           clickClosable: true
         }
       )};
