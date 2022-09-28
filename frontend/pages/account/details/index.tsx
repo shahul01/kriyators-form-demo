@@ -24,8 +24,12 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     userName: ''
   };
   const validEmailRegex = /(.+)@(.+){2,}\.(.+){2,}/;
-  const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading, refetch: refetchFormData } = useGetAccDetailsQuery();
+  const firstRender = useRef({
+    ErrorGetAccDetails: true,
+    isLoadingFormData: true
+  });
   const changedFormData = useRef({});
+  const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading: isLoadingFormData, refetch: refetchFormData } = useGetAccDetailsQuery();
   const [ updateAccDetails, { error:ErrorUpdateAccDetails } ] = useUpdateAccDetailsMutation()
   const [ formAccDetails, setFormAccDetails ] = useState<IAccDetails|{[key:string]:any}|any>(initialFormState);
   // const [ changedFormData, setChangedFormData ] = useState({});
@@ -33,17 +37,46 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   const isValidEmail = validEmailRegex.test(formAccDetails?.email);
 
   useEffect(() => {
-    console.log('fetchedFormData', fetchedFormData);
     if (fetchedFormData?.length) {
+      // console.log('fetchedFormData', fetchedFormData);
       setFormAccDetails(fetchedFormData?.[0]);
     };
   }, [fetchedFormData]);
 
   useEffect(() => {
-    if ((typeof(ErrorGetAccDetails) !== 'undefined') && 'error' in ErrorGetAccDetails) {
+    // COMMT: show toast if data not loaded yet but for 7 secs max.
+    if (
+        isLoadingFormData
+        && firstRender.current.isLoadingFormData
+      ) {
+      toast(
+        'Loading...', {
+          time: (7*1000),
+          clickClosable: true
+        }
+      )};
+    firstRender.current.isLoadingFormData = false;
+
+
+  }, [isLoadingFormData]);
+
+  useEffect(() => {
+    // COMMT: show toast if data error when fetching yet but for 7 secs max.
+    if (
+        (typeof(ErrorGetAccDetails) !== 'undefined')
+        && 'error' in ErrorGetAccDetails
+        && firstRender.current.ErrorGetAccDetails
+      ) {
       console.error('error', ErrorGetAccDetails);
-      toast(`Error: Can't get data. ${ErrorGetAccDetails?.error}`);
+      toast(
+        `Error: Can't get data. ${ErrorGetAccDetails?.error}`, {
+          time: (7*1000),
+          clickClosable: true
+        }
+      );
+      firstRender.current.ErrorGetAccDetails = false;
     };
+
   }, [ErrorGetAccDetails]);
 
   useEffect(() => {
