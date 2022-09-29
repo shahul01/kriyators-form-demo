@@ -34,11 +34,12 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   const [ formAccDetails, setFormAccDetails ] = useState<IAccDetails|{[key:string]:any}|any>(initialFormState);
   // const [ changedFormData, setChangedFormData ] = useState({});
   const [ formChanged, setFormChanged ] = useState(false);
+  const [ returnedData, setReturnedData ] = useState(initialFormState);
   const isValidEmail = validEmailRegex.test(formAccDetails?.email);
 
   useEffect(() => {
+    console.log('fetchedFormData', fetchedFormData);
     if (fetchedFormData?.length) {
-      // console.log('fetchedFormData', fetchedFormData);
       setFormAccDetails(fetchedFormData?.[0]);
     };
   }, [fetchedFormData]);
@@ -113,13 +114,16 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     console.log('handleUploadPicture() triggered');
   };
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (!isValidEmail) {
       return toast('Error: Please Enter a valid Email. Not submitted.');
     };
 
     console.log('changedFormData', changedFormData.current);
-    updateAccDetails(changedFormData.current);
+
+    const newData:any = await updateAccDetails(changedFormData.current);
+    console.log('newData', newData);
+    setReturnedData(newData?.data);
 
     if ((typeof(ErrorUpdateAccDetails) !== 'undefined') && 'error' in ErrorUpdateAccDetails) {
       console.error('ErrorUpdateAccDetails :>> ', ErrorUpdateAccDetails);
@@ -132,7 +136,10 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   };
 
   function handleReset() {
-    if (fetchedFormData?.length) {
+
+    if (returnedData?.displayName) {
+      setFormAccDetails(returnedData);
+    } else if (fetchedFormData?.length) {
       setFormAccDetails(fetchedFormData?.[0]);
     } else {
       setFormAccDetails(initialFormState);
