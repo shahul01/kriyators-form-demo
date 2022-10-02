@@ -13,9 +13,10 @@ import { IAccDetails } from '../../../types/global';
 import styles from './Form.module.css';
 
 interface IFormProps {
+  formAccDetails: IAccDetails;
   isValidEmail: boolean;
-  formAccDetails: IAccDetails
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  checkEmailValidity: () => void;
   handleSubmit: () => void;
   handleReset: () => void;
 }
@@ -85,8 +86,11 @@ const Form: FC<IFormProps> = (props) => {
           color='secondary'
           required={true}
           type='email'
+
           error={!props.isValidEmail}
-          helperText={!props.isValidEmail ? 'Please enter a valid Email' : ''}
+          helperText={(!props.isValidEmail) ? 'Please enter a valid Email' : ''}
+          onBlur={props.checkEmailValidity}
+
           value={props.formAccDetails?.email}
           onChange={props.handleChange}
         />

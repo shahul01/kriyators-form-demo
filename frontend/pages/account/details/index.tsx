@@ -6,6 +6,7 @@ import { IAccDetails, IFormAccDetails } from '../../../types/global';
 import styles from './index.module.css';
 import Preview from '../../../features/AccountDetails/Preview/Preview';
 import { initialFormState } from '../../../helpers/constants';
+import { isValidEmailCheck } from '../../../helpers/form';
 
 interface IAccountDetailsProps {
 }
@@ -16,7 +17,7 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   const [ formAccDetails, setFormAccDetails ] = useState<IAccDetails|{[key:string]:any}|any>(initialFormState);
   const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading: isLoadingFormData, refetch:refetchFormData } = useGetAccDetailsQuery();
   const [ updateAccDetails, { error:ErrorUpdateAccDetails } ] = useUpdateAccDetailsMutation();
-  const isValidEmail = /(.+)@(.+){2,}\.(.+){2,}/.test(formAccDetails?.email);
+  const [ isValidEmail, setIsValidEmail ] = useState(true);
 
   useEffect(() => {
     if (fetchedFormData?.length) {
@@ -65,6 +66,12 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formAccDetails]);
 
+  useEffect(() => {
+    if (isLoadingFormData) return;
+    checkEmailValidity();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formAccDetails.email]);
+
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setFormAccDetails({
       ...formAccDetails,
@@ -91,6 +98,11 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
     return changedFormData;
 
+  };
+
+  function checkEmailValidity() {
+    const emailValidity = isValidEmailCheck(formAccDetails.email);
+    setIsValidEmail(emailValidity);
   };
 
   function handleUploadPicture() {
@@ -127,9 +139,10 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
       </h1>
       <div className={styles['body']}>
         <Form
-          isValidEmail={isValidEmail}
           formAccDetails={formAccDetails}
+          isValidEmail={isValidEmail}
           handleChange={handleChange}
+          checkEmailValidity={checkEmailValidity}
           handleSubmit={handleSubmit}
           handleReset={handleReset}
         />
