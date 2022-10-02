@@ -5,40 +5,20 @@ import Form from '../../../features/AccountDetails/Form/Form';
 import { IAccDetails, IFormAccDetails } from '../../../types/global';
 import styles from './index.module.css';
 import Preview from '../../../features/AccountDetails/Preview/Preview';
+import { initialFormState } from '../../../helpers/constants';
 
 interface IAccountDetailsProps {
 }
 
 const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
-  const initialFormState:IAccDetails = {
-    firstName: '',
-    lastName: '',
-    displayName: '',
-    email: '',
-    phoneNo1: '',
-    phoneNo2: '',
-    location: '',
-    images: [],
-    jobTitle: '',
-    userName: ''
-  };
-  const validEmailRegex = /(.+)@(.+){2,}\.(.+){2,}/;
-  const firstRender = useRef({
-    ErrorGetAccDetails: true,
-    isLoadingFormData: true
-  });
-  const changedFormData = useRef({});
-  const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading: isLoadingFormData, refetch: refetchFormData } = useGetAccDetailsQuery();
-  const [ updateAccDetails, { error:ErrorUpdateAccDetails } ] = useUpdateAccDetailsMutation()
+  const firstRender = useRef({ ErrorGetAccDetails: true, isLoadingFormData: true });
   const [ formAccDetails, setFormAccDetails ] = useState<IAccDetails|{[key:string]:any}|any>(initialFormState);
-  // const [ changedFormData, setChangedFormData ] = useState({});
-  const [ formChanged, setFormChanged ] = useState(false);
-  const [ returnedData, setReturnedData ] = useState(initialFormState);
-  const isValidEmail = validEmailRegex.test(formAccDetails?.email);
+  const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading: isLoadingFormData, refetch:refetchFormData } = useGetAccDetailsQuery();
+  const [ updateAccDetails, { error:ErrorUpdateAccDetails } ] = useUpdateAccDetailsMutation();
+  const isValidEmail = /(.+)@(.+){2,}\.(.+){2,}/.test(formAccDetails?.email);
 
   useEffect(() => {
-    console.log('fetchedFormData', fetchedFormData);
     if (fetchedFormData?.length) {
       setFormAccDetails(fetchedFormData?.[0]);
     };
@@ -47,8 +27,7 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   useEffect(() => {
     // COMMT: show toast if data not loaded yet but for 4 secs max.
     if (
-        // isLoadingFormData
-        // &&
+        // isLoadingFormData &&
         firstRender.current.isLoadingFormData
       ) {
       toast(
@@ -87,7 +66,6 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   }, [formAccDetails]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    if (!formChanged) setFormChanged(true);
     setFormAccDetails({
       ...formAccDetails,
       [e.target?.id]: e.target?.value
@@ -95,18 +73,23 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   };
 
   function getChangedFormData() {
-    if (!fetchedFormData || !formChanged) return;
+    // COMMT: Loops through fetchedForm and formAccDetails to gets only updated values
+    if (!fetchedFormData) return;
+    let changedFormData:{[key:string]:any} = {};
     const fetchedForm:{[key:string]:any} = fetchedFormData?.[0];
+
     for (let key in fetchedForm) {
       const oldFormKey:string = fetchedForm[key];
       const newFormKey:string = formAccDetails[key];
       if (oldFormKey !== newFormKey) {
-        changedFormData.current = {
-          ...changedFormData.current,
+        changedFormData = {
+          ...changedFormData,
           [key]: formAccDetails[key]
         };
       };
     };
+
+    return changedFormData;
 
   };
 
@@ -116,14 +99,12 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
   async function handleSubmit() {
     if (!isValidEmail) {
-      return toast('Error: Please Enter a valid Email. Not submitted.');
+      return toast('Error: Please enter a valid Email. Not submitted.');
     };
 
-    console.log('changedFormData', changedFormData.current);
-
-    const newData:any = await updateAccDetails(changedFormData.current);
-    console.log('newData', newData);
-    setReturnedData(newData?.data);
+    const changedFormData = getChangedFormData();
+    if (!changedFormData) return toast('Error: No changed data to update. Not submitted.');
+    await updateAccDetails(changedFormData);
 
     if ((typeof(ErrorUpdateAccDetails) !== 'undefined') && 'error' in ErrorUpdateAccDetails) {
       console.error('ErrorUpdateAccDetails :>> ', ErrorUpdateAccDetails);
@@ -131,19 +112,12 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
     };
 
     toast('Details updated.');
-    // refetchFormData();
+    refetchFormData();
 
   };
 
   function handleReset() {
-
-    if (returnedData?.displayName) {
-      setFormAccDetails(returnedData);
-    } else if (fetchedFormData?.length) {
-      setFormAccDetails(fetchedFormData?.[0]);
-    } else {
-      setFormAccDetails(initialFormState);
-    };
+    setFormAccDetails(fetchedFormData?.[0] || initialFormState);
   };
 
   return (

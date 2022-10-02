@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
+import ButtonBase from '@mui/material/ButtonBase';
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import { IImage, IAccDetails } from '../../../types/global';
 import styles from './Preview.module.css';
@@ -36,9 +37,9 @@ const Preview: FC<IPreviewProps> = (props) => {
               )
             }
           </div>
-          <div className={styles['button']} onClick={props.handleUploadPicture} >
+          <ButtonBase className={styles['button']} onClick={props.handleUploadPicture} >
             <CameraAltRoundedIcon className='camera-img-upload' />
-          </div>
+          </ButtonBase>
 
         </div>
         <div className={styles['text-details']}>
