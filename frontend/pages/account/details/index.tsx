@@ -13,10 +13,11 @@ interface IAccountDetailsProps {
 
 const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
-  const firstRender = useRef({ ErrorGetAccDetails: true, isLoadingFormData: true });
+  const firstRender = useRef({ ErrorGetAccDetails:true, isLoadingFormData:true, changedFormData:true });
   const [ formAccDetails, setFormAccDetails ] = useState<IAccDetails|{[key:string]:any}|any>(initialFormState);
   const { data: fetchedFormData, error:ErrorGetAccDetails, isLoading: isLoadingFormData, refetch:refetchFormData } = useGetAccDetailsQuery();
   const [ updateAccDetails, { error:ErrorUpdateAccDetails } ] = useUpdateAccDetailsMutation();
+  const [ isFormUpdated, setIsFormUpdated ] = useState(false);
   const [ isValidEmail, setIsValidEmail ] = useState(true);
 
   useEffect(() => {
@@ -62,17 +63,21 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
   }, [ErrorGetAccDetails]);
 
   useEffect(() => {
-    getChangedFormData();
+    if (firstRender.current.changedFormData) {
+      getChangedFormData();
+      firstRender.current.changedFormData = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formAccDetails]);
 
   useEffect(() => {
-    if (isLoadingFormData) return;
+    if (isLoadingFormData||(typeof(ErrorGetAccDetails) !== 'undefined' && 'error' in ErrorGetAccDetails)) return;
     checkEmailValidity();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formAccDetails.email]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    if (!isFormUpdated) setIsFormUpdated(true);
     setFormAccDetails({
       ...formAccDetails,
       [e.target?.id]: e.target?.value
@@ -81,9 +86,13 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
 
   function getChangedFormData() {
     // COMMT: Loops through fetchedForm and formAccDetails to gets only updated values
-    if (!fetchedFormData) return;
+    if (isLoadingFormData && typeof(fetchedFormData)!=='undefined') return toast('Error: Server is not connected.', {
+      time: (7*1000),
+      clickClosable: true
+    });
+    if (isLoadingFormData && !isFormUpdated) return;
     let changedFormData:{[key:string]:any} = {};
-    const fetchedForm:{[key:string]:any} = fetchedFormData?.[0];
+    const fetchedForm:{[key:string]:any}|undefined = fetchedFormData?.[0];
 
     for (let key in fetchedForm) {
       const oldFormKey:string = fetchedForm[key];
@@ -114,8 +123,10 @@ const AccountDetails: FC<IAccountDetailsProps> = (props) => {
       return toast('Error: Please enter a valid Email. Not submitted.');
     };
 
-    const changedFormData = getChangedFormData();
-    if (!changedFormData) return toast('Error: No changed data to update. Not submitted.');
+    const changedFormData:{[key:string]:any}|void|undefined = getChangedFormData();
+    if (!changedFormData || !Object.entries(changedFormData)?.length) {
+      return toast('Error: Unconnected server or unchanged data. Not submitted.')
+    };
     await updateAccDetails(changedFormData);
 
     if ((typeof(ErrorUpdateAccDetails) !== 'undefined') && 'error' in ErrorUpdateAccDetails) {
